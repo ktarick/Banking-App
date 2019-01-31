@@ -8,12 +8,30 @@ namespace BankingProject
 {
     class Account
     {
+        private static int nextId = 1;
+
         private int Id { get; set; }
+        private string Description { get; set; }
+        private double Balance { get; set; }
+
+        public void TransferTo(double Amount, Account Acct)
+        {
+            var BalanceBeforeWithDraw = GetBalance();
+            Withdraw(Amount);
+            var BalanceAfterWithdraw = GetBalance();
+            if (BalanceBeforeWithDraw == BalanceAfterWithdraw)
+            {
+                Console.WriteLine("Insufficient Funds.");
+                return;
+            }   
+            Acct.Deposit(Amount);
+        }
+
+    
         public int GetId()
         {
             return Id;
         }
-        private string Description { get; set; }
         public string GetDescription()
         {
             return Description;
@@ -22,34 +40,57 @@ namespace BankingProject
         {
             Description = NewDescription;
         }
-        private double Balance { get; set; }
         public double GetBalance()
         {
             return Balance;
         }
         public void Deposit(double Amount)
         {
-            Balance += Amount;
+            if(Amount <= 0)
+            {
+                Console.WriteLine("Amount must be positive.");
+            } else
+            {
+                Balance += Amount;
+            }
         }
-        public void Withdraw(double Amount)
-        {
-            Balance -= Amount;
+        public void Withdraw(double Amount) // Withdraw must be positive and
+        {                                   // also must be less than balance.
+            if(Amount <= 0)
+            {
+                Console.WriteLine("Amount must be positive.");
+                return;
+            }
+            if (Amount > Balance)
+            {
+                Console.WriteLine("Insuficiant Funds");
+                return;
+            }
+            else
+            {
+                Balance -= Amount;
+            }
         }
-        public void Print()
+        public virtual string Print()
         {
-            Console.WriteLine($"Id = {Id}, Description = {Description}, Balance = {Balance}");
+            return $"Id = {Id}, Description = {Description}, Balance = {Balance}";
         }
         public Account(string NewDescription)
         {
-            Id = -1;
-            Description = NewDescription;
+            Id = nextId++;
+            if(NewDescription == null)
+            {
+                Description = "New Account";
+            } else
+            {
+                Description = NewDescription;
+            }
             Balance = 0;
         }
-        public Account()
+        // This constructor calls the other constructor
+        // and passes in a null value for NewDescription
+        public Account() : this(null)
         {
-            Id = -1;
-            Description = "New Account";
-            Balance = 0;
         }
     }
 }
