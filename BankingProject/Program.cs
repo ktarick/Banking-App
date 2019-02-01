@@ -10,6 +10,16 @@ namespace BankingProject
     {
         static void Main(string[] args)
         {
+            Checking chk0 = new Checking();
+            Console.WriteLine(chk0.Print());
+            chk0.Deposit(300);
+            Console.WriteLine(chk0.Print());
+            chk0.Withdraw(100);
+            Console.WriteLine(chk0.Print());
+
+            Checking chk01 = new Checking("Checking 01");
+            Console.WriteLine(chk01.Print());
+
             var chk1 = new Checking("First Checking Acct");
             Console.WriteLine(chk1.Print());
 
@@ -34,17 +44,17 @@ namespace BankingProject
             sav3.Deposit(100);
             Console.WriteLine(sav3.Print());
 
-            List<Account> accounts = new List<Account>();
-            accounts.Add(chk1);
-            accounts.Add(chk2);
-            accounts.Add(sav1);
-            accounts.Add(sav2);
-            accounts.Add(sav3);
+            //List<Account> accounts = new List<Account>();
+            //accounts.Add(chk1);
+            //accounts.Add(chk2);
+            //accounts.Add(sav1);
+            //accounts.Add(sav2);
+            //accounts.Add(sav3);
 
-            foreach(var account in accounts)
-            {
-                Console.WriteLine(account.Print());
-            }
+            //foreach(var account in accounts)
+            //{
+            //    Console.WriteLine(account.Print());
+            //}
 
             //sav2.TransferTo(200, sav3);
             //Console.WriteLine(sav2.Print());

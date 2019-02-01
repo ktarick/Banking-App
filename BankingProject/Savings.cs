@@ -4,20 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// This class is made using the inheritance method.
+
 namespace BankingProject
 {
     class Savings : Account
     {
-        private double IntRate { get; set; } = 0.01;
+        private decimal IntRate { get; set; } = 0.01M;
         public override string Print()
         {
             return base.Print() + $" IntRate = {IntRate}";
         }
-        public double GetIntRate()
+        public decimal GetIntRate()
         {
             return IntRate;
         }
-        public void SetIntRate(double NewIntRate)
+        public void SetIntRate(decimal NewIntRate)
         {
             IntRate = NewIntRate;
         }
@@ -28,7 +30,7 @@ namespace BankingProject
         }
         public Savings(string NewDescription) : base(NewDescription)
         {
-            SetIntRate(0.01);
+            SetIntRate(0.01M);
         }
         public Savings() : this(null)
         {

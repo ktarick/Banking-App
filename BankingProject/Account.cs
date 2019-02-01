@@ -9,12 +9,10 @@ namespace BankingProject
     class Account
     {
         private static int nextId = 1;
-
         private int Id { get; set; }
         private string Description { get; set; }
-        private double Balance { get; set; }
-
-        public void TransferTo(double Amount, Account Acct)
+        private decimal Balance { get; set; }
+        public void TransferTo(decimal Amount, Account Acct)
         {
             var BalanceBeforeWithDraw = GetBalance();
             Withdraw(Amount);
@@ -26,8 +24,6 @@ namespace BankingProject
             }   
             Acct.Deposit(Amount);
         }
-
-    
         public int GetId()
         {
             return Id;
@@ -40,11 +36,11 @@ namespace BankingProject
         {
             Description = NewDescription;
         }
-        public double GetBalance()
+        public decimal GetBalance()
         {
             return Balance;
         }
-        public void Deposit(double Amount)
+        public void Deposit(decimal Amount)
         {
             if(Amount <= 0)
             {
@@ -54,7 +50,7 @@ namespace BankingProject
                 Balance += Amount;
             }
         }
-        public void Withdraw(double Amount) // Withdraw must be positive and
+        public void Withdraw(decimal Amount) // Withdraw must be positive and
         {                                   // also must be less than balance.
             if(Amount <= 0)
             {
