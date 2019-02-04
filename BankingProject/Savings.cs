@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Savings : Account
+    class Savings : Account, IPrintable, IAccount
     {
         private decimal IntRate { get; set; } = 0.01M;
         public override string Print()

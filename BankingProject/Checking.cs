@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Checking
+    class Checking : IPrintable, IAccount
     {
         private Account acccount { get; set; }
         public int NextCheckNumber { get; set; } = 1;
@@ -50,6 +50,10 @@ namespace BankingProject
         }
         public Checking() : this(null)
         {
+        }
+        public void TransferTo(decimal amount, Account account)
+        {
+
         }
     }
 }

@@ -6,12 +6,28 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Account
+    class Account : IComparable<Account>, IPrintable, IAccount // must add IComparable<...>
     {
         private static int nextId = 1;
         private int Id { get; set; }
         private string Description { get; set; }
         private decimal Balance { get; set; }
+        // this is used to compare and sort
+        public int CompareTo(Account acct)
+        {
+            if (this.Description == acct.Description)
+            {
+                return 0;
+            }
+            if(this.Description.CompareTo(acct.Description) >0 )
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
         public void TransferTo(decimal Amount, Account Acct)
         {
             var BalanceBeforeWithDraw = GetBalance();
